@@ -4,8 +4,12 @@ class Stack:
         self._count += 1
     
     def pop(self) -> any:
-        pass
+        deleted_element = self._items.pop(self._count - 1, None)
 
+        if deleted_element:
+            self._count -= 1
+
+        return deleted_element  
 
     def __init__(self):
         self._items = {}
