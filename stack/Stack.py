@@ -11,16 +11,20 @@ class Stack:
 
         return deleted_element
     
-    def size(self):
+    def size(self) -> int:
         return self._count
     
-    def isEmpty(self):
+    def isEmpty(self) -> bool:
         return self.size() == 0
     
-    def peek(self):
+    def peek(self) -> any:
         return self._items[self.size() - 1]
+    
+    def clear(self) -> None:
+        self._items = {}
+        self._count = 0
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._items = {}
         self._count = 0
 
