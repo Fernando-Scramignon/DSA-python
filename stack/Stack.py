@@ -13,7 +13,10 @@ class Stack:
     
     def size(self):
         return self._count
-
+    
+    def isEmpty(self):
+        return self.size() == 0
+        
     def __init__(self):
         self._items = {}
         self._count = 0
