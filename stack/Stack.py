@@ -9,7 +9,10 @@ class Stack:
         if deleted_element:
             self._count -= 1
 
-        return deleted_element  
+        return deleted_element
+    
+    def size(self):
+        return self._count
 
     def __init__(self):
         self._items = {}
