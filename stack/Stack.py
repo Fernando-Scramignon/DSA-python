@@ -14,7 +14,7 @@ class Stack:
     def size(self) -> int:
         return self._count
     
-    def isEmpty(self) -> bool:
+    def is_empty(self) -> bool:
         return self.size() == 0
     
     def peek(self) -> any:
