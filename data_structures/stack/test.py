@@ -1,6 +1,6 @@
 import unittest
 
-from stack.Stack import Stack
+from data_structures.stack.Stack import Stack
 
 
 class TestStackPush(unittest.TestCase):
