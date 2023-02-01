@@ -4,7 +4,7 @@ class Queue:
         return self._count - self._lowest_index
     
     def is_empty(self):
-        return self._count == 0
+        return self.size() == 0
     
     def peek(self):
         return self._items[self._lowest_index]
