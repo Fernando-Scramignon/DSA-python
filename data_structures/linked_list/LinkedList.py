@@ -6,31 +6,31 @@ class Node():
         self.next = None
 
 class LinkedList(unittest.TestCase):
-    def push(element):
+    def push(self, element):
         pass
     
-    def insert(element, index):
+    def insert(self, element, index):
         pass
 
-    def get_element_at(index):
+    def get_element_at(self, index):
         pass
 
-    def remove(element):
+    def remove(self, element):
         pass
     
-    def index_of(element):
+    def index_of(self, element):
         pass
 
-    def remove_at(index):
+    def remove_at(self, index):
         pass
 
-    def is_empty():
+    def is_empty(self):
         pass
 
-    def size():
+    def size(self):
         pass
 
-    def toString():
+    def toString(self):
         pass
 
     def __init__(self):
