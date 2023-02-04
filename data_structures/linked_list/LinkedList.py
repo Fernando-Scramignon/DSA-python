@@ -60,7 +60,7 @@ class LinkedList(unittest.TestCase):
         pass
 
     def size(self):
-        pass
+        return self._count
 
     def toString(self):
         pass
