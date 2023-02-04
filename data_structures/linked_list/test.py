@@ -48,3 +48,22 @@ class TestPush(unittest.TestCase):
         for i, name in enumerate(self.names_tuple):
             self.assertEqual(self.names.get_element_at(i).element, self.names_tuple[i])
 
+class TestIndexOf(unittest.TestCase):
+    def setUp(self) -> None:
+        self.players_tuple = ("Isagi", "Bachira", "Nagi")
+        self.players = LinkedList()
+        self.players_empty = LinkedList()
+
+        for player in self.players_tuple:
+            self.players.push(player)
+    
+    
+    def test_search_normaly(self):
+        for i, player in enumerate(self.players_tuple):
+            self.assertEqual(self.players.index_of(player), i)
+
+    def test_search_not_in_list(self):
+        self.assertEqual(self.players.index_of("Barou"), None)
+
+    def test_search_when_empty(self):
+        self.assertEqual(self.players_empty.index_of("Isagi"), None)

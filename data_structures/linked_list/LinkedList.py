@@ -41,7 +41,17 @@ class LinkedList(unittest.TestCase):
         pass
     
     def index_of(self, element):
-        pass
+        current = self._head
+        
+        c = 0
+        while(current):
+            if current.element == element:
+                return c
+
+            current = current.next
+            c += 1
+            
+        return None
 
     def remove_at(self, index):
         pass
