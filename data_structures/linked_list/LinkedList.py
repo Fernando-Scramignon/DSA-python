@@ -57,7 +57,7 @@ class LinkedList(unittest.TestCase):
         pass
 
     def is_empty(self):
-        pass
+        return self._count == 0
 
     def size(self):
         return self._count
