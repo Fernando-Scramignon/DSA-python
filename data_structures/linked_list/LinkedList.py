@@ -7,13 +7,35 @@ class Node():
 
 class LinkedList(unittest.TestCase):
     def push(self, element):
-        pass
+        node = Node(element)
+
+        if not self._head:
+            self._head = node
+            self._count += 1
+            return node
+
+        current = self._head
+        while(current.next):
+            current = current.next
+        
+        current.next = node
+        self._count += 1
+        return node
+
     
     def insert(self, element, index):
         pass
 
     def get_element_at(self, index):
-        pass
+        if index >= self._count or index < 0:
+            return None
+        
+        current = self._head
+        for _ in range(index):
+            current = current.next
+
+        return current
+        
 
     def remove(self, element):
         pass
