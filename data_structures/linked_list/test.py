@@ -1,5 +1,6 @@
 import unittest
 from data_structures.linked_list.LinkedList import LinkedList
+import pdb
 
 class TestGetElementAt(unittest.TestCase):
     def setUp(self) -> None:
@@ -63,7 +64,80 @@ class TestIndexOf(unittest.TestCase):
             self.assertEqual(self.players.index_of(player), i)
 
     def test_search_not_in_list(self):
-        self.assertEqual(self.players.index_of("Barou"), None)
+        self.assertEqual(self.players.index_of("Barou"), -1)
 
     def test_search_when_empty(self):
-        self.assertEqual(self.players_empty.index_of("Isagi"), None)
+        self.assertEqual(self.players_empty.index_of("Isagi"), -1)
+
+class TestRemoveAt(unittest.TestCase):
+    def setUp(self) -> None:
+        self.players_tuple = ("Isagi", "Bachira", "Nagi")
+        self.players = LinkedList()
+        self.players_empty = LinkedList()
+
+        for player in self.players_tuple:
+            self.players.push(player)
+        
+    def test_removing_from_first_position(self):
+        removed_player = self.players.remove_at(0)
+
+        self.assertEqual(removed_player, self.players_tuple[0])
+        self.assertEqual(self.players._count, 2)
+        self.assertEqual(self.players.index_of(self.players_tuple[0]), -1)
+    
+    def test_removing_from_last_position(self):
+        removed_player = self.players.remove_at(2)
+        self.assertEqual(removed_player, self.players_tuple[2])
+        self.assertEqual(self.players._count, 2)
+        self.assertEqual(self.players.index_of(self.players_tuple[2]), -1)
+
+    def test_removing_from_middle(self):
+        removed_player = self.players.remove_at(1)
+        self.assertEqual(removed_player, self.players_tuple[1])
+        self.assertEqual(self.players._count, 2)
+        self.assertEqual(self.players.index_of(self.players_tuple[1]), -1)
+
+    def test_removing_inexistent_element(self):
+        removed_player = self.players.remove_at(10)
+        self.assertEqual(removed_player, None)
+
+    def test_removing_from_empty_list(self):
+        removed_player = self.players_empty.remove_at(0)
+        self.assertEqual(removed_player, None)
+
+
+class TestRemove(unittest.TestCase):
+    def setUp(self) -> None:
+        self.players_tuple = ("Isagi", "Bachira", "Nagi")
+        self.players = LinkedList()
+        self.players_empty = LinkedList()
+
+        for player in self.players_tuple:
+            self.players.push(player)
+    
+    # fix bug here (index of not working properly)
+    def test_removing_from_first_position(self):
+        removed_player = self.players.remove(self.players_tuple[0])
+        self.assertEqual(removed_player, self.players_tuple[0])
+        self.assertEqual(self.players._count, 2)
+        self.assertEqual(self.players.index_of(self.players_tuple[0]), -1)
+    
+    def test_removing_from_last_position(self):
+        removed_player = self.players.remove(self.players_tuple[2])
+        self.assertEqual(removed_player, self.players_tuple[2])
+        self.assertEqual(self.players._count, 2)
+        self.assertEqual(self.players.index_of(self.players_tuple[2]), -1)
+
+    def test_removing_from_middle(self):
+        removed_player = self.players.remove(self.players_tuple[1])
+        self.assertEqual(removed_player, self.players_tuple[1])
+        self.assertEqual(self.players._count, 2)
+        self.assertEqual(self.players.index_of(self.players_tuple[1]), -1)
+
+    def test_removing_inexistent_element(self):
+        removed_player = self.players.remove("Chigiri")
+        self.assertEqual(removed_player, None)
+
+    def test_removing_from_empty_list(self):
+        removed_player = self.players_empty.remove("Isagi")
+        self.assertEqual(removed_player, None)
