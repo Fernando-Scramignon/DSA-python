@@ -108,7 +108,7 @@ class LinkedList(unittest.TestCase):
     def size(self):
         return self._count
 
-    def toString(self):
+    def to_string(self):
         pass
 
     def __init__(self):
