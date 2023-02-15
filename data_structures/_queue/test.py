@@ -1,5 +1,4 @@
 import unittest
-import pdb
 from data_structures._queue.Queue import Queue
 
 class TestEnqueue(unittest.TestCase):
@@ -56,7 +55,6 @@ class TestDequeue(unittest.TestCase):
         self.assertEqual(deleted_element, None)
     
     def test_removing_adding_removing_again(self):
-        pdb.set_trace()
 
         for _ in self.names:
             self.names_queue.dequeue()
