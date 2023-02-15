@@ -1,5 +1,4 @@
 import unittest
-import pdb
 
 class Node():
     def __init__(self, element):
@@ -23,9 +22,40 @@ class LinkedList(unittest.TestCase):
         self._count += 1
         return node
 
+    # Se if index is in range (i >= 0 && i <= size()), if not return false
+    # create a node with the element argument
+    # get the element (index - 1) and therefore get the element (index)
+    # get the previous node and tie it to the new node
+    # get the new node and tie it with the old current node
     
     def insert(self, element, index):
-        pass
+        if index < 0 or index > self.size():
+            return False
+        
+        new_node = Node(element)
+
+        if index == 0:
+            if self.size() > 0:
+                old_head = self._head
+
+                self._head = new_node
+                self._head.next = old_head
+                
+                self._count += 1
+                return True
+
+            self._count += 1
+            self._head = new_node
+            return True
+        
+        previous_node = self.get_element_at(index - 1)
+        next_node = previous_node.next
+
+        previous_node.next = new_node
+        new_node.next = next_node
+
+        self._count += 1
+        return True
 
     def get_element_at(self, index):
         if index >= self._count or index < 0:

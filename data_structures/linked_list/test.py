@@ -140,3 +140,54 @@ class TestRemove(unittest.TestCase):
     def test_removing_from_empty_list(self):
         removed_player = self.players_empty.remove("Isagi")
         self.assertEqual(removed_player, None)
+
+class TestInsert(unittest.TestCase):
+    def setUp(self) -> None:
+        self.players = ('Isagi', 'Nagi', 'Barou')
+        self.players_list = LinkedList()
+
+    def test_insert_while_empty(self):
+        players = self.players
+        players_list = self.players_list
+
+        self.assertTrue(players_list.insert(players[0], 0))
+
+        self.assertEqual(players_list._head.element, players[0])
+    
+    def test_insert_first_position_while_not_empty(self):
+        players = self.players
+        players_list = self.players_list
+
+        players_list.insert(players[0], 0)
+        players_list.insert(players[1], 0)
+
+
+        self.assertEqual(players_list._head.element, players[1])
+        self.assertEqual(players_list._head.next.element, players[0])
+
+    def test_insert_last_position(self):
+        players = self.players
+        players_list = self.players_list
+
+        for index, player in enumerate(players):
+            self.assertTrue(players_list.insert(player, index))
+        
+        self.assertEqual(players_list.get_element_at(1).element, players[1])
+        self.assertEqual(players_list.get_element_at(2).element, players[2])
+    
+    def test_insert_middle(self):
+        players = self.players
+        players_list = self.players_list
+
+        self.assertTrue(players_list.insert(players[0], 0))
+        self.assertTrue(players_list.insert(players[2], 1))
+        self.assertTrue(players_list.insert(players[1], 1))     
+
+        self.assertEqual(players_list.get_element_at(1).element, players[1])
+        self.assertEqual(players_list.get_element_at(2).element, players[2])
+    
+    def test_inserting_index_out_of_range(self):
+        players = self.players
+        players_list = self.players_list
+        self.assertFalse(players_list.insert(players[2], 10))
+        
