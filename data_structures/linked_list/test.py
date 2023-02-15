@@ -115,7 +115,6 @@ class TestRemove(unittest.TestCase):
         for player in self.players_tuple:
             self.players.push(player)
     
-    # fix bug here (index of not working properly)
     def test_removing_from_first_position(self):
         removed_player = self.players.remove(self.players_tuple[0])
         self.assertEqual(removed_player, self.players_tuple[0])
