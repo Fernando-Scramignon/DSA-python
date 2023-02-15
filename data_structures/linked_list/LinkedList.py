@@ -22,12 +22,6 @@ class LinkedList(unittest.TestCase):
         self._count += 1
         return node
 
-    # Se if index is in range (i >= 0 && i <= size()), if not return false
-    # create a node with the element argument
-    # get the element (index - 1) and therefore get the element (index)
-    # get the previous node and tie it to the new node
-    # get the new node and tie it with the old current node
-    
     def insert(self, element, index):
         if index < 0 or index > self.size():
             return False
