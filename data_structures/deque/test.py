@@ -28,4 +28,11 @@ class TestAddBack(unittest.TestCase):
 
 class TestAddFront(unittest.TestCase):
     def setUp(self) -> None:
+        names_deque: Deque = Deque()
+        names: tuple = ('John', 'Jack', 'Ryan')
+
+    def test_add_when_empty(self):
+        pass
+        
+    def test_add_with_many_elements(self):
         pass
