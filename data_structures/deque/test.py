@@ -28,11 +28,25 @@ class TestAddBack(unittest.TestCase):
 
 class TestAddFront(unittest.TestCase):
     def setUp(self) -> None:
-        names_deque: Deque = Deque()
-        names: tuple = ('John', 'Jack', 'Ryan')
+        self.names_deque: Deque = Deque()
+        self.names: tuple = ('John', 'Jack', 'Ryan')
 
-    def test_add_when_empty(self):
-        pass
+    def test_add_when_empty(self) -> None:
+        names_deque: Deque = self.names_deque
+        names: tuple = self.names
+
+        names_deque.add_front(names[0])
+        self.assertEqual(names_deque._items[0], names[0])
         
     def test_add_with_many_elements(self):
-        pass
+        names_deque: Deque = self.names_deque
+        names: tuple = self.names
+
+        for name in names:
+            names_deque.add_front(name)
+        
+        
+        for index in reversed(range(names_deque._count - 1)):
+            self.assertEqual(names_deque._items[index], name)
+
+
