@@ -48,8 +48,20 @@ class Deque:
     def is_empty(self) -> bool:
         return self._count == self._lowest_index
 
-    def to_string(self):
-        pass
+
+    def to_string(self) -> str:
+        if self.is_empty():
+            return ''
+        
+        # Using a list and joining afterwards reduce the time complexity
+        output: list = []
+
+        for index in range(self._count):
+            output.append(self._items[index])
+        
+        str_output: str = ", ".join(output)
+
+        return str_output
 
     def __init__(self) -> None:
         self._count: int = 0

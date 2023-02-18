@@ -74,3 +74,35 @@ class TestRemoveBack(unittest.TestCase):
         deleted_element: any | None = empty_deque.remove_back()
 
         self.assertIsNone(deleted_element)
+
+class TestToString(unittest.TestCase):
+    def setUp(self) -> None:
+        self.names: tuple = ('John', 'Jack', 'Ryan')
+
+        self.empty_deque: Deque = Deque()
+        self.one_item_deque: Deque = Deque()
+        self.deque: Deque = Deque()
+
+        self.one_item_deque.add_back(self.names[0])
+
+        for name in self.names:
+            self.deque.add_back(name)
+        
+
+    def test_empty_deque(self) -> None:
+        string_rep: str = self.empty_deque.to_string()
+        expected_output: str = ''
+
+        self.assertEqual(string_rep, expected_output)
+
+    def test_one_item_deque(self) -> None:
+        string_rep: str = self.one_item_deque.to_string()
+        expected_ouput: str = f'{self.names[0]}'
+
+        self.assertEqual(string_rep, expected_ouput)
+
+    def test_normal_deque(self) -> None:
+        string_rep: str = self.deque.to_string()
+        expected_output: str = f'{self.names[0]}, {self.names[1]}, {self.names[2]}'
+
+        self.assertEqual(string_rep, expected_output)
