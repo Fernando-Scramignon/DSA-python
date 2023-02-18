@@ -1,5 +1,5 @@
 import unittest
-from data_structures._queue.Queue import Queue
+from data_structures.queue.Queue import Queue
 
 class TestEnqueue(unittest.TestCase):
     def setUp(self) -> None:
