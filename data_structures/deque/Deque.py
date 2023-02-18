@@ -1,5 +1,5 @@
 class Deque:
-    def add_front(self, element):
+    def add_front(self, element: any) -> any:
         
         if self.is_empty():
             return self.add_back(element)
@@ -17,7 +17,7 @@ class Deque:
         self._lowest_index -= 1
         return element
         
-    def add_back(self, element):
+    def add_back(self, element: any) -> any:
         self._items[self._count] = element
         self._count += 1
         return element
@@ -25,33 +25,33 @@ class Deque:
     def remove_front(self):
         pass
     
-    def remove_back(self) -> None:
+    def remove_back(self) -> any:
         if self.is_empty():
             return None
         
         last_index: int = self._count - 1
-        deleted_element = self._items.pop(last_index, None)
+        deleted_element: any = self._items.pop(last_index, None)
 
         self._count -= 1
         return deleted_element
 
 
-    def peek_front(self):
+    def peek_front(self) -> any:
         return self._items[self._lowest_index]
 
-    def peek_back(self):
+    def peek_back(self) -> any:
         return self._items[self._count - 1]
 
-    def size(self):
+    def size(self) -> int:
         return self._count - self._lowest_index
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return self._count == self._lowest_index
 
     def to_string(self):
         pass
 
-    def __init__(self):
-        self._count = 0
-        self._lowest_index = 0
-        self._items = {}
+    def __init__(self) -> None:
+        self._count: int = 0
+        self._lowest_index: int = 0
+        self._items: dict = {}
