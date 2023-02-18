@@ -24,9 +24,17 @@ class Deque:
 
     def remove_front(self):
         pass
+    
+    def remove_back(self) -> None:
+        if self.is_empty():
+            return None
+        
+        last_index: int = self._count - 1
+        deleted_element = self._items.pop(last_index, None)
 
-    def remove_back(self):
-        pass
+        self._count -= 1
+        return deleted_element
+
 
     def peek_front(self):
         return self._items[self._lowest_index]
