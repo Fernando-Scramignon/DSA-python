@@ -49,4 +49,28 @@ class TestAddFront(unittest.TestCase):
         for index in reversed(range(names_deque._count - 1)):
             self.assertEqual(names_deque._items[index], name)
 
+class TestRemoveBack(unittest.TestCase):
+    def setUp(self) -> None:
+        self.names: tuple = ('John', 'Jack', 'Ryan')
 
+        self.deque: Deque = Deque()
+        self.empty_deque: Deque = Deque()
+
+        for name in self.names:
+            self.deque.add_back(name)            
+    
+    def test_remove(self):
+        deque: Deque = self.deque
+        names: tuple = self.names
+
+        for index in reversed(range(3)):
+            deleted_element: str = deque.remove_back()
+            self.assertEqual(deleted_element, names[index])
+        
+        self.assertTrue(deque.is_empty())
+
+    def test_remove_when_empty(self):
+        empty_deque: Deque = self.deque
+        deleted_element: any | None = empty_deque.remove_back()
+        
+        self.assertIsNone(deleted_element)
