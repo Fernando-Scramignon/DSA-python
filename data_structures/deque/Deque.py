@@ -1,3 +1,5 @@
+import pdb
+
 class Deque:
     def add_front(self, element: any) -> any:
         
@@ -22,8 +24,14 @@ class Deque:
         self._count += 1
         return element
 
-    def remove_front(self):
-        pass
+    def remove_front(self) -> any:
+        if self.is_empty():
+            return None
+        
+        deleted_element: any = self._items.pop(self._lowest_index, None)
+        self._lowest_index += 1
+
+        return deleted_element
     
     def remove_back(self) -> any:
         if self.is_empty():

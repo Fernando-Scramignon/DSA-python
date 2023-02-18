@@ -106,3 +106,41 @@ class TestToString(unittest.TestCase):
         expected_output: str = f'{self.names[0]}, {self.names[1]}, {self.names[2]}'
 
         self.assertEqual(string_rep, expected_output)
+
+class TestRemoveFront(unittest.TestCase):
+    def setUp(self) -> None:
+        self.names: tuple = ('John', 'Jack', 'Ryan')
+
+        self.empty_deque: Deque = Deque()
+        self.one_element_deque: Deque = Deque()
+        self.deque: Deque = Deque()
+
+        self.one_element_deque.add_back(self.names[0])
+
+        for name in self.names:
+            self.deque.add_back(name)
+
+    def test_remove_while_empty(self) -> None:
+        empty_deque: Deque = self.empty_deque
+        deleted_element: any | None = empty_deque.remove_front()
+
+        self.assertIsNone(deleted_element)
+        
+    
+    def test_remove_with_one_element(self) -> None:
+        one_element_deque: Deque = self.one_element_deque
+        names = self.names
+        deleted_element: any | None = one_element_deque.remove_front()
+
+        self.assertEqual(deleted_element, names[0])
+        self.assertTrue(one_element_deque.is_empty())
+
+    def test_remove_with_multiple_elements(self) -> None:
+        names: tuple = self.names
+        deque: Deque = self.deque
+
+        for name in names:
+            removed_element: any | None = deque.remove_front()
+            self.assertEqual(removed_element, name)
+        
+        self.assertTrue(deque.is_empty())
