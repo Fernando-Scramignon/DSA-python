@@ -1,20 +1,20 @@
 import unittest
 
 class Node():
-    def __init__(self, element):
-        self.element = element
-        self.next = None
+    def __init__(self, element: any) -> None:
+        self.element: any = element
+        self.next: Node | None = None
 
 class LinkedList(unittest.TestCase):
-    def push(self, element):
-        node = Node(element)
+    def push(self, element: any) -> Node:
+        node: Node = Node(element)
 
         if not self._head:
             self._head = node
             self._count += 1
             return node
 
-        current = self._head
+        current: Node = self._head
         while(current.next):
             current = current.next
         
@@ -22,15 +22,15 @@ class LinkedList(unittest.TestCase):
         self._count += 1
         return node
 
-    def insert(self, element, index):
+    def insert(self, element: any, index: int) -> bool:
         if index < 0 or index > self.size():
             return False
         
-        new_node = Node(element)
+        new_node: Node = Node(element)
 
         if index == 0:
             if self.size() > 0:
-                old_head = self._head
+                old_head: Node = self._head
 
                 self._head = new_node
                 self._head.next = old_head
@@ -42,8 +42,8 @@ class LinkedList(unittest.TestCase):
             self._head = new_node
             return True
         
-        previous_node = self.get_element_at(index - 1)
-        next_node = previous_node.next
+        previous_node: Node = self.get_element_at(index - 1)
+        next_node: Node = previous_node.next
 
         previous_node.next = new_node
         new_node.next = next_node
@@ -51,24 +51,24 @@ class LinkedList(unittest.TestCase):
         self._count += 1
         return True
 
-    def get_element_at(self, index):
+    def get_element_at(self, index: int) -> Node:
         if index >= self._count or index < 0:
             return None
         
-        current = self._head
+        current: Node = self._head
         for _ in range(index):
             current = current.next
 
         return current
         
 
-    def remove(self, element):
-        index = self.index_of(element)
+    def remove(self, element: any) -> any:
+        index: int = self.index_of(element)
         return self.remove_at(index)
     
-    def index_of(self, element):
-        current = self._head
-        c = 0
+    def index_of(self, element: any) -> int:
+        current: Node = self._head
+        c: int = 0
         while(current):
             if current.element == element:
                 return c
@@ -78,7 +78,7 @@ class LinkedList(unittest.TestCase):
             
         return -1
 
-    def remove_at(self, index):
+    def remove_at(self, index: int) -> any:
         if index < 0 or index >= self._count:
             return None
         
@@ -86,14 +86,14 @@ class LinkedList(unittest.TestCase):
             return None
 
         if index == 0:
-            current_node = self._head
+            current_node: Node = self._head
             self._head = current_node.next
 
             self._count -= 1
             return current_node.element
         
-        previous_node = self.get_element_at(index - 1)
-        current_node = previous_node.next
+        previous_node: Node = self.get_element_at(index - 1)
+        current_node: Node = previous_node.next
 
         previous_node.next = current_node.next
 
@@ -101,17 +101,16 @@ class LinkedList(unittest.TestCase):
         return current_node.element
 
 
-
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return self._count == 0
 
-    def size(self):
+    def size(self) -> int:
         return self._count
 
     def to_string(self):
         pass
 
     def __init__(self):
-        self._head = None
-        self._count = 0
+        self._head: Node | Node = None
+        self._count: int = 0
         
