@@ -64,5 +64,5 @@ class TestInsert(unittest.TestCase):
         did_insertion_worked: bool = doubly_linked.insert(names[0], 1)
         self.assertFalse(did_insertion_worked)
 
-        did_insertion_worked: bool = doubly_linked.insert(names[0] -2)
+        did_insertion_worked: bool = doubly_linked.insert(names[0], -2)
         self.assertFalse(did_insertion_worked)
