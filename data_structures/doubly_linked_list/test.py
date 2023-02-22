@@ -42,8 +42,6 @@ class TestInsert(unittest.TestCase):
         self.assertEqual(doubly_linked_second_node.element, names[1])
         self.assertEqual(doubly_linked_third_node.element, names[2])
         
-        
-
     def test_adding_middle(self) -> None:
         names: tuple = self.names
         doubly_linked: DoublyLinkedList = self.doubly_linked
@@ -66,3 +64,32 @@ class TestInsert(unittest.TestCase):
 
         did_insertion_worked: bool = doubly_linked.insert(names[0], -2)
         self.assertFalse(did_insertion_worked)
+
+class TestRemoveAt(unittest.TestCase):
+    def setUp(self) -> None:
+        self.names: tuple = ('John', 'Jack', 'Ryan')
+        self.doubly_linked: DoublyLinkedList = DoublyLinkedList()
+
+        for index, name in enumerate(self.names):
+            self.doubly_linked.insert(name, index)
+    
+    def test_removing_index_out_of_range(self):
+        pass
+
+    def test_removing_first_element(self):
+        pass
+
+    def test_removing_element_when_size_is_one(self):
+        pass
+
+    def test_removing_first_element_when_size_is_two(self):
+        pass
+
+    def test_removing_last_element(self):
+        pass
+
+    def test_removing_last_element_when_size_is_two(self):
+        pass
+
+    def test_removing_middle_element(self):
+        pass
