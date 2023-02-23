@@ -68,28 +68,104 @@ class TestInsert(unittest.TestCase):
 class TestRemoveAt(unittest.TestCase):
     def setUp(self) -> None:
         self.names: tuple = ('John', 'Jack', 'Ryan')
+
         self.doubly_linked: DoublyLinkedList = DoublyLinkedList()
+        self.doubly_linked_one_node: DoublyLinkedList = DoublyLinkedList()
+        self.doubly_linked_two_node: DoublyLinkedList = DoublyLinkedList()
 
         for index, name in enumerate(self.names):
             self.doubly_linked.insert(name, index)
+
+        self.doubly_linked_one_node.insert(self.names[0], 0)
+
+        self.doubly_linked_two_node.insert(self.names[0], 0)
+        self.doubly_linked_two_node.insert(self.names[1], 1)
+        
+        
     
-    def test_removing_index_out_of_range(self):
-        pass
+    def test_removing_index_out_of_range(self) -> None:
+        doubly_linked: DoublyLinkedList = self.doubly_linked
 
-    def test_removing_first_element(self):
-        pass
+        deleted_element: any | None = doubly_linked.remove_at(3)
+        self.assertIsNone(deleted_element)
 
-    def test_removing_element_when_size_is_one(self):
-        pass
+        deleted_element: any | None = doubly_linked.remove_at(-3)
+        self.assertIsNone(deleted_element)
 
-    def test_removing_first_element_when_size_is_two(self):
-        pass
+    def test_removing_first_element(self) -> None:
+        names: tuple = self.names
+        doubly_linked: DoublyLinkedList = self.doubly_linked
 
-    def test_removing_last_element(self):
-        pass
+        deleted_element: any | None = doubly_linked.remove_at(0)
+        self.assertEqual(deleted_element, names[0])
 
-    def test_removing_last_element_when_size_is_two(self):
-        pass
+        new_head: DoublyNode | None = doubly_linked.get_element_at(0)
+        self.assertEqual(new_head.element, names[1])
+        self.assertIsNone(new_head.prev)
+        self.assertEqual(doubly_linked._head, new_head)
 
-    def test_removing_middle_element(self):
-        pass
+
+    def test_removing_element_when_size_is_one(self) -> None:
+        names: tuple = self.names
+        doubly_linked_one_node: DoublyLinkedList = self.doubly_linked_one_node
+
+        deleted_element: any | None = doubly_linked_one_node.remove_at(0)
+        self.assertEqual(deleted_element, names[0])
+
+
+        self.assertEqual(doubly_linked_one_node._head, None)
+        self.assertEqual(doubly_linked_one_node._tail, None)
+
+    def test_removing_first_element_when_size_is_two(self) -> None:
+        names: tuple = self.names
+        doubly_linked_two_node: DoublyLinkedList = self.doubly_linked_two_node
+
+        expected_head_after_deletion: DoublyNode | None = doubly_linked_two_node.get_element_at(1)
+
+        deleted_element: any | None = doubly_linked_two_node.remove_at(0)
+        self.assertEqual(deleted_element, names[0])
+
+        new_head: DoublyNode | None = doubly_linked_two_node.get_element_at(0)
+        
+        self.assertEqual(new_head, expected_head_after_deletion)
+        self.assertIsNone(new_head.prev)
+
+    def test_removing_last_element(self) -> None:
+        names: tuple = self.names
+        doubly_linked: DoublyLinkedList = self.doubly_linked
+
+        doubly_last_index: int = doubly_linked.size() - 1
+
+        while doubly_last_index > 0:
+            deleted_element: any | None = doubly_linked.remove_at(doubly_last_index)
+            self.assertEqual(deleted_element, names[doubly_last_index])
+            
+            doubly_last_index -= 1
+
+            new_tail: DoublyNode = doubly_linked.get_element_at(doubly_last_index)
+            self.assertEqual(new_tail, doubly_linked._tail)
+
+    def test_removing_last_element_when_size_is_two(self) -> None:
+        names: tuple = self.names
+        doubly_linked_two_nodes: DoublyLinkedList = self.doubly_linked_two_node
+
+        deleted_element: any = doubly_linked_two_nodes.remove_at(1)
+        self.assertEqual(deleted_element, names[1])
+
+        expected_tail: DoublyNode = doubly_linked_two_nodes.get_element_at(0)
+        current_tail: DoublyNode = doubly_linked_two_nodes._tail
+        self.assertEqual(expected_tail, current_tail)
+
+    def test_removing_middle_element(self) -> None:
+        names: tuple = self.names
+        doubly_linked: DoublyLinkedList = self.doubly_linked
+
+        previous_node: DoublyNode = doubly_linked.get_element_at(0)
+        next_node: DoublyNode = doubly_linked.get_element_at(2)
+
+        deleted_element: any = doubly_linked.remove_at(1)
+        self.assertEqual(deleted_element, names[1])
+        
+        self.assertEqual(previous_node.next, next_node)
+        self.assertEqual(next_node.prev, previous_node)
+
