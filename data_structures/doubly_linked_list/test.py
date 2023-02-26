@@ -169,3 +169,47 @@ class TestRemoveAt(unittest.TestCase):
         self.assertEqual(previous_node.next, next_node)
         self.assertEqual(next_node.prev, previous_node)
 
+class TestGetElementAt(unittest.TestCase):
+    def setUp(self) -> None:
+        self.names: tuple = ('John', 'Jack', 'Ryan', 'Michael', 'Aiden', 'Robert')
+        self.names_list: DoublyLinkedList = DoublyLinkedList()
+        self.names_list_empty: DoublyLinkedList = DoublyLinkedList()
+        self.names_list_one_element: DoublyLinkedList = DoublyLinkedList()
+
+        for index, name in enumerate(self.names):
+            self.names_list.insert(name, index)
+                
+        self.names_list_one_element.insert(self.names[0], 0)
+    
+    def test_empty_list(self) -> None:
+        names_list: DoublyLinkedList = self.names_list_empty
+
+        self.assertIsNone(names_list.get_element_at(0))
+        self.assertIsNone(names_list.get_element_at(1))
+        self.assertIsNone(names_list.get_element_at(-1))
+        self.assertIsNone(names_list.get_element_at(-2))
+
+    def test_one_element_list(self) -> None:
+        names_list_one_element: DoublyLinkedList = self.names_list_one_element
+        names: tuple = self.names
+        expected_output: str = names[0]
+
+        self.assertEqual(names_list_one_element.get_element_at(0).element, expected_output)
+
+        self.assertIsNone(names_list_one_element.get_element_at(1))
+        self.assertIsNone(names_list_one_element.get_element_at(2))
+        self.assertIsNone(names_list_one_element.get_element_at(-1))
+        self.assertIsNone(names_list_one_element.get_element_at(-2))
+    
+    def test_normal_case(self) -> None:
+        names_list: DoublyLinkedList = self.names_list
+        names: tuple = self.names
+
+        for index, name in enumerate(names):
+            element: str = names_list.get_element_at(index).element
+            expected_output = name
+
+            self.assertEqual(element, expected_output)
+
+        self.assertIsNone(names_list.get_element_at(1000))
+        self.assertIsNone(names_list.get_element_at(-1))

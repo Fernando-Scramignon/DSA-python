@@ -1,6 +1,6 @@
 from data_structures.linked_list.LinkedList import Node
 from data_structures.linked_list.LinkedList import LinkedList
-
+import math
 import pdb
 
 class DoublyNode(Node):
@@ -94,6 +94,28 @@ class DoublyLinkedList(LinkedList):
 
         self._count -= 1
         return deleted_node.element
+
+    def get_element_at(self, index: int) -> Node:
+        if index >= self._count or index < 0:
+            return None
+        
+        current: DoublyNode
+        
+        middle: int =  math.floor(self.size() / 2)
+
+        if index > middle:
+            current = self._tail
+
+            for _ in reversed(range(index, self.size() - 1)):
+                current = current.prev
+
+            return current      
+        
+        current = self._head
+        for _ in range(index):
+            current = current.next
+        
+        return current
 
     def __init__(self) -> None:
         super().__init__()
