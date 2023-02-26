@@ -52,18 +52,6 @@ class DoublyLinkedList(LinkedList):
         self._count += 1
         return True
     
-    # if index is out of range, return None
-    # if index is 0, make head node next pointer be the new head, decrement count
-    # if size is 0 make tail be None
-    # if index is equal to the last index
-        # make tail.prev to be tail and make tail.next to be None
-        # decrement count
-        # return the old tail
-    # else, get the element we want to delete, with it, get the previous element and next element
-    # make previous_node.next to be next_node
-    # make next_node.prev to be previous_node
-    # decrement count
-    # return the detached node
     def remove_at(self, index: int) -> any:
         list_last_index: int = self._count - 1
 
