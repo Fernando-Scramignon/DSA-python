@@ -1,4 +1,5 @@
 import unittest
+import pdb
 
 class Node():
     def __init__(self, element: any) -> None:
@@ -107,8 +108,23 @@ class LinkedList(unittest.TestCase):
     def size(self) -> int:
         return self._count
 
-    def to_string(self):
-        pass
+    def to_string(self) -> str:
+        output: list = []
+
+        if self.size() == 0:
+            return ''
+        
+        node: Node = self._head
+        
+        output.append(node.element)
+
+        while getattr(node, 'next', None):
+            node = node.next
+            output.append(node.element)
+        
+        str_output: str = ', '.join(output)
+
+        return str_output
 
     def __init__(self):
         self._head: Node | Node = None
