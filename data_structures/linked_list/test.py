@@ -1,5 +1,6 @@
 import unittest
 from data_structures.linked_list.LinkedList import LinkedList
+from data_structures.linked_list.LinkedList import Node
 
 class TestGetElementAt(unittest.TestCase):
     def setUp(self) -> None:
@@ -12,9 +13,9 @@ class TestGetElementAt(unittest.TestCase):
             self.players.push(player)
     
     def test_normal_search(self) -> None:
-        player_1: str | None = self.players.get_element_at(0)
-        player_2: str | None = self.players.get_element_at(1)
-        player_3: str | None = self.players.get_element_at(2)
+        player_1: Node = self.players.get_element_at(0)
+        player_2: Node = self.players.get_element_at(1)
+        player_3: Node = self.players.get_element_at(2)
 
         self.assertEqual(player_1.element, self.players_tuple[0])
         self.assertEqual(player_2.element, self.players_tuple[1])
