@@ -40,3 +40,38 @@ class TestStackPop(unittest.TestCase):
         deleted_element = self.books_stack.pop()
         self.assertEqual(deleted_element, self.books[len(self.books) - 1])
         self.assertEqual(self.books_stack._count, 2)
+
+class TestToString(unittest.TestCase):
+    def setUp(self) -> None:
+        self.names: tuple = ('John', 'Jack', 'Ryan')
+
+        self.names_stack: Stack = Stack()
+        self.names_stack_empty: Stack = Stack()
+        self.names_stack_one_element: Stack = Stack()
+
+        for name in self.names:
+            self.names_stack.push(name)
+        
+        self.names_stack_one_element.push(self.names[0])
+    
+    def test_empty_stack(self) -> None:
+        names_stack_empty: Stack = self.names_stack_empty        
+        expected_output: str = ''
+        
+        self.assertEqual(names_stack_empty.to_string(), expected_output)
+    
+    def test_one_element_stack(self) -> None:
+        names: tuple = self.names
+        names_stack_one_element: Stack = self.names_stack_one_element
+        expected_output: str = f'{names[0]}'
+
+        self.assertEqual(names_stack_one_element.to_string(), expected_output)
+    
+    def test_multiple_elements_stack(self) -> None:
+        names: tuple = self.names
+        names_stack: Stack = self.names_stack
+        expected_output: str = f'{names[0]}, {names[1]}, {names[2]}'
+        
+        self.assertEqual(names_stack.to_string(), expected_output)
+
+
