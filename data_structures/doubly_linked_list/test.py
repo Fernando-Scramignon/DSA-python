@@ -213,3 +213,26 @@ class TestGetElementAt(unittest.TestCase):
 
         self.assertIsNone(names_list.get_element_at(1000))
         self.assertIsNone(names_list.get_element_at(-1))
+
+class TestPush(unittest.TestCase):
+    def setUp(self) -> None:
+        self.names: tuple = ('John', 'Jack', 'Ryan')
+        self.names_list: DoublyLinkedList = DoublyLinkedList()
+        
+    def test_adding(self) -> None:
+        names_list: DoublyLinkedList = self.names_list
+        names: tuple = self.names
+
+        for index, name in enumerate(names):
+
+            added_node: DoublyNode = names_list.push(name)
+            expected_element: DoublyNode = names_list.get_element_at(index)
+
+            if index == 0:
+                self.assertEqual(names_list._head == added_node)
+            
+            self.assertEqual(names_list._tail, added_node)
+
+            self.assertEqual(added_node, expected_element)
+            self.assertEqual(added_node.element, name)
+            self.assertEqual(names_list.size(), index + 1)

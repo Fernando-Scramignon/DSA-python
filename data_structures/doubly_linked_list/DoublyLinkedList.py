@@ -1,7 +1,6 @@
 from data_structures.linked_list.LinkedList import Node
 from data_structures.linked_list.LinkedList import LinkedList
 import math
-import pdb
 
 class DoublyNode(Node):
     def __init__(self, element: any) -> None:
@@ -116,6 +115,9 @@ class DoublyLinkedList(LinkedList):
             current = current.next
         
         return current
+    
+    def push(self):
+        pass
 
     def __init__(self) -> None:
         super().__init__()
