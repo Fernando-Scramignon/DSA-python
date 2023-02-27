@@ -24,6 +24,24 @@ class Stack:
         self._items = {}
         self._count = 0
 
+    # create a variable called output (list)
+    # if size() is zero then return empty str
+    # adds every element to output
+    # create a variable called output_str and store the ", ".join(output)
+    # return this new variable
+    def to_string(self) -> str:
+        if self.size() == 0:
+            return ''
+        
+        output: list = []
+
+        for index in range(self.size()):
+            output.append(self._items[index])
+        
+        output_str: str = ', '.join(output)
+        return output_str
+        
+
     def __init__(self) -> None:
         self._items = {}
         self._count = 0
