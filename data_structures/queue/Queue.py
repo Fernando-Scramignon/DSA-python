@@ -21,7 +21,18 @@ class Queue:
         self._lowest_index += 1
 
         return deleted_element
+    
+    def to_string(self) -> str:
+        if self.is_empty():
+            return ''
+    
+        output: list = []
         
+        for index in range(self.size()):
+            output.append(self._items[index])
+        
+        output_str: str = ', '.join(output)
+        return output_str
 
     def __init__(self):
         self._items = {}

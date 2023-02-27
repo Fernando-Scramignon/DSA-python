@@ -64,4 +64,36 @@ class TestDequeue(unittest.TestCase):
         
         for index, name in enumerate(self.names_2):
             self.assertEqual(self.names_queue._items[index + 3], name)
-            
+
+class TestToString(unittest.TestCase):
+    def setUp(self) -> None:
+        self.names: tuple = ('John', 'Jack', 'Ryan')
+        self.names_queue: Queue = Queue()
+        self.names_queue_empty: Queue = Queue()
+        self.names_queue_one_element: Queue = Queue()
+
+        for name in self.names:
+            self.names_queue.enqueue(name)
+        
+        self.names_queue_one_element.enqueue(self.names[0])
+    
+    def test_empty_queue(self) -> None:
+        names_queue_empty: Queue = self.names_queue_empty
+        expected_output: str = ''
+
+        self.assertEqual(names_queue_empty.to_string(), expected_output)
+    
+    def test_one_element_queue(self) -> None:
+        names: tuple = self.names
+        names_queue_one_element: Queue = self.names_queue_one_element
+        expected_output = f'{names[0]}'
+
+        self.assertEqual(names_queue_one_element.to_string(), expected_output)
+    
+    def test_normal_case(self) -> None:
+        names: tuple = self.names
+        names_queue = self.names_queue
+        expected_output = f'{names[0]}, {names[1]}, {names[2]}'
+
+        self.assertEqual(names_queue.to_string(), expected_output)
+      
