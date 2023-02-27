@@ -24,14 +24,13 @@ class Stack:
         self._items = {}
         self._count = 0
 
-    # remember to fix to stack method
     def to_string(self) -> str:
         if self.size() == 0:
             return ''
         
         output: list = []
 
-        for index in range(self.size()):
+        for index in reversed(range(self.size())):
             output.append(self._items[index])
         
         output_str: str = ', '.join(output)
