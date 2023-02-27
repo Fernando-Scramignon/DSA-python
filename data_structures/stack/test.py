@@ -70,7 +70,7 @@ class TestToString(unittest.TestCase):
     def test_multiple_elements_stack(self) -> None:
         names: tuple = self.names
         names_stack: Stack = self.names_stack
-        expected_output: str = f'{names[0]}, {names[1]}, {names[2]}'
+        expected_output: str = f'{names[2]}, {names[1]}, {names[0]}'
         
         self.assertEqual(names_stack.to_string(), expected_output)
 
