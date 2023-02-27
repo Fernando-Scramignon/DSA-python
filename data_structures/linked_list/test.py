@@ -1,5 +1,6 @@
 import unittest
 from data_structures.linked_list.LinkedList import LinkedList
+from data_structures.linked_list.LinkedList import Node
 
 class TestGetElementAt(unittest.TestCase):
     def setUp(self) -> None:
@@ -12,9 +13,9 @@ class TestGetElementAt(unittest.TestCase):
             self.players.push(player)
     
     def test_normal_search(self) -> None:
-        player_1: str | None = self.players.get_element_at(0)
-        player_2: str | None = self.players.get_element_at(1)
-        player_3: str | None = self.players.get_element_at(2)
+        player_1: Node = self.players.get_element_at(0)
+        player_2: Node = self.players.get_element_at(1)
+        player_3: Node = self.players.get_element_at(2)
 
         self.assertEqual(player_1.element, self.players_tuple[0])
         self.assertEqual(player_2.element, self.players_tuple[1])
@@ -189,4 +190,35 @@ class TestInsert(unittest.TestCase):
         players: tuple = self.players
         players_list: LinkedList = self.players_list
         self.assertFalse(players_list.insert(players[2], 10))
-        
+    
+class TestToString(unittest.TestCase):
+    def setUp(self) -> None:
+        self.names: tuple = ('John', 'Jack', 'Ryan')
+        self.names_list: LinkedList = LinkedList()
+        self.names_list_empty: LinkedList = LinkedList()
+        self.names_list_one_element: LinkedList = LinkedList()
+
+        self.names_list_one_element.push(self.names[0])
+
+        for name in self.names:
+            self.names_list.push(name)
+    
+    def test_empty_list(self):
+        names_list_empty: LinkedList = self.names_list_empty
+        expected_output: str = ''
+
+        self.assertEqual(names_list_empty.to_string(), expected_output)
+    
+    def test_one_element_list(self):
+        names: tuple = self.names
+        names_list_one_element: LinkedList = self.names_list_one_element
+        expected_output: str = f'{names[0]}'
+
+        self.assertEqual(names_list_one_element.to_string(), expected_output)
+    
+    def test_multiple_element_list(self):
+        names: tuple = self.names
+        names_list: LinkedList = self.names_list
+        expected_output: str = f'{names[0]}, {names[1]}, {names[2]}'
+
+        self.assertEqual(names_list.to_string(), expected_output)
